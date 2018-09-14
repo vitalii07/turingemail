@@ -1,0 +1,46 @@
+<div class="tm_email-contacts">
+  <table>
+    <tr>
+      <th>From</th>
+      <td>
+        {{#if email.from_name}}
+        <strong>{{email.from_name}}</strong>
+        {{/if}}
+        <span>{{email.from_address}}</span>
+      </td>
+    </tr>
+
+    {{#if email.contacts.tos}}
+    <tr>
+      <th>To</th>
+      <td>
+        {{#email.contacts.tos}}
+        <span>{{.}}</span>
+        {{/email.contacts.tos}}
+      </td>
+    </tr>
+    {{/if}}
+
+    {{#if email.contacts.ccs}}
+    <tr>
+      <th>Cc</th>
+      <td>
+        {{#email.contacts.ccs}}
+        <span>{{.}}</span>
+        {{/email.contacts.ccs}}
+      </td>
+    </tr>
+    {{/if}}
+
+    {{#if email.contacts.bccs}}
+    <tr>
+      <th>Bcc</th>
+      <td>
+        {{#email.contacts.bccs}}
+        <span>{{.}}</span>
+        {{/email.contacts.bccs}}
+      </td>
+    </tr>
+    {{/if}}
+  </table>
+</div>

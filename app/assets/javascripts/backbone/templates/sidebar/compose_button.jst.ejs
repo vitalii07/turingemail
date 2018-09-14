@@ -1,0 +1,28 @@
+<button type="button" class="tm_compose-button">
+  <svg class="icon"><use xlink:href="/images/symbols.svg#sidebar-compose"></use></svg>
+  <span>Compose</span>
+</button>
+<div class="tm_compose-dropdown">
+  <button type="button" data-toggle="dropdown" aria-expanded="false" tabindex="-1">
+    <svg class="icon"><use xlink:href="/images/symbols.svg#sidebar-template"></use></svg>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    {{#emailTemplates}}
+    <li role="presentation">
+      <a role="menuitem" tabindex="-1" class="load-email-template" data-uid="{{uid}}">
+        <svg class="icon"><use xlink:href="/images/symbols.svg#compose"></use></svg>
+        <span>{{name}}</span>
+      </a>
+    </li>
+    {{/emailTemplates}}
+    {{#if emailTemplates.length > 0}}
+    <li role="presentation" class="divider"></li>
+    {{/if}}
+    <li role="presentation">
+      <a role="menuitem" tabindex="-1" class="create-email-template">
+        <svg class="icon"><use xlink:href="/images/symbols.svg#plus"></use></svg>
+        <span>New template</span>
+      </a>
+    </li>
+  </ul>
+</div>

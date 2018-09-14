@@ -1,0 +1,101 @@
+<% function slideHTML(icon, heading, caption, width) { %>
+  <section class="tm_tour-slide">
+    <svg class="figure"><use xlink:href="/images/tour.svg#<%= icon %>"></use></svg>
+    <div>
+      <h3 class="caption heading"><%= heading %></h3>
+      <p class="caption"<% if (width) { %> style="max-width:<%= width %>px"<% } %>><%= caption %></p>
+    </div>
+  </section>
+<% } %>
+
+<div class="modal fade tour-modal" tabindex="-1" role="dialog">
+  <div class="tm_tour modal-dialog tour-modal-dialog">
+    <div class="tm_tour-layout">
+      <nav class="tm_tour-chapters">
+        <a class="tm_tour-chapter active">Conversations Inbox</a>
+        <a class="tm_tour-chapter">Contact Sidebar</a>
+        <a class="tm_tour-chapter">Scheduled Emails</a>
+        <a class="tm_tour-chapter">Tracked Emails</a>
+        <a class="tm_tour-chapter">Templates</a>
+        <a class="tm_tour-chapter">Attachments</a>
+        <a class="tm_tour-chapter">Inbox Cleaner</a>
+        <a class="tm_tour-chapter">Signatures</a>
+        <a class="tm_tour-chapter">Analytics</a>
+        <a class="tm_tour-chapter">Reminders</a>
+        <a class="tm_tour-chapter">Subscriptions</a>
+        <a class="tm_tour-chapter">Integrations</a>
+        <a class="tm_tour-chapter">Syncing</a>
+      </nav>
+      <div class="tm_tour-slides">
+        <section class="tm_tour-slide active">
+          <svg class="figure tm_tour-logo"><use xlink:href="/images/symbols.svg#logo"></use></svg>
+          <div>
+            <p class="caption big" style="max-width:480px">Welcome.</p>
+          </div>
+        </section>
+
+        <section class="tm_tour-slide">
+          <svg class="figure"><use xlink:href="/images/tour.svg#lightbulb"></use></svg>
+          <div>
+            <p class="caption big" style="max-width:600px">We’ve built a suite of features to help you accomplish more every day. This is the most useful email product you’ll ever use.</p>
+            <!-- <p class="caption" style="max-width:480px">We hope it allows you to accomplish basic and advanced email tasks with ease in a more productive and efficient manner.</p> -->
+          </div>
+        </section>
+
+        <%
+        slideHTML("contact", "Email like messenger.",
+                  "Email contacts in a messaging style with quick, back and forth conversations, all while the content remains sorted and searchable in your inbox. Never lose information in personal message threads.")
+
+        slideHTML("context", "A better connection.",
+                  "As you’re composing, view your contact’s personal information, 1-to-1 email history, and current social media activity. Write more relevant emails with our Contact Sidebar.", 460)
+
+        slideHTML("scheduling", "Write now, send later.",
+                  "Compose emails now and schedule them for future arrival. Display impeccable timing and email etiquette.")
+
+        slideHTML("tracking", "Track an email to 'open'.",
+                  "Track any communication with ease. Know who’s opened emails and who hasn’t to plan relevant next steps.", 530)
+
+        slideHTML("template", "Templates for consistency.",
+                  "Create email templates for consistent communication with easy accessibility.")
+
+        slideHTML("attachment", "A library of attachments",
+                  "View every email attachment in a single list. Locate the file you need without clicking through threads of messages.")
+
+        slideHTML("cleaner", "Solve email overwhelm.",
+                  "Inbox Cleaner analyzes your inbox then groups like emails for easy batch archiving. A faster way to clear your inbox.", 550)
+
+        slideHTML("signature", "Sign in style.",
+                  "Create multiple signature styles for all your email identities.", 530)
+
+        slideHTML("analytics", "Real-Time Monitoring.",
+                  "Analytics drive action. Learn details about your email usage such as who you connect with the most and high-activity email threads to spend email time more effectively.")
+
+        slideHTML("reminder", "Smart follow up.",
+                  "Remind yourself of an unanswered email by having it reappear in your inbox. Take swift follow up action and never let an email be forgotten.")
+
+        slideHTML("subscription", "Manage subscriptions.",
+                  "Take action on active subscriptions from one page with one click. Clear the bothersome and keep the enlightening.")
+
+        slideHTML("salesforce", "Seamless integration.",
+                  "Salesforce, Desk.com, and Zendesk integration coming next. Make your email even more powerful with integration into your current business software products.")
+
+        slideHTML("syncing", "Your emails are syncing.",
+                  "This process could take some time depending on the number of emails in your inbox, but you can start using your Turing Email account right away. <a class='tm_tour-skip'>Continue to Turing <span>&gt;</span></a>")
+
+        %>
+
+        <div class="tm_tour-footer">
+          <a class="tm_tour-prev"></a>
+          <a class="tm_tour-next"></a>
+        </div>
+        <a class="tm_tour-skip">
+          <span class="skip-tour-text">Skip Tour</span>
+          <span class="tm_tour-skip-button">
+            <svg class="icon"><use xlink:href="/images/symbols.svg#modal-close"></use></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>

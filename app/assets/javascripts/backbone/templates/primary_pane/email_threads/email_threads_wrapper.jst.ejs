@@ -1,0 +1,78 @@
+<% if(isMobile()) {
+  function outputFolderDropdown(emailFolders, uniqueID, className) {
+    for (var i = 0; i < emailFolders.length; i++) {
+      var labelAsLinkID = _.uniqueId(uniqueID);
+
+      if (emailFolders[i].label_type != "system" || emailFolders[i].label_id == "INBOX") { %>
+        <li>
+          <a class="<%= className %>" id="<%= labelAsLinkID %>" name="<%= emailFolders[i]["label_id"] %>"><%= emailFolders[i]["name"] %></a>
+        </li>
+<%    }
+    }
+  }
+%>
+<div class="tm_mail-box-toolbar">
+  <form class="tm_search-field-mobile" role="search">
+    <input type="search" class="tm_mail-box-toolbar-search" placeholder="Search" value="{{searchQuery}}">
+  </form>
+  <a class="thread-select-toggle">Select</a>
+  <a class="thread-select-cancel">Cancel</a>
+
+  <div class="tm_mobile-bottom-toolbar">
+    <div class="tm_modal-menu dropdown">
+      <button type="button" class="tm_button tm_button-caret" data-toggle="dropdown">Label</button>
+      <div class="dropdown-menu" role="menu">
+        <ul>
+          <% outputFolderDropdown(emailFolders, "moveToFolderLink", "move_to_folder_link"); %>
+        </ul>
+        <ul>
+          <li><a><b>Cancel</b></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="expander"></div>
+    <button type="submit" class="tm_button archive-button">Archive</button>
+    <div class="expander"></div>
+    <div class="tm_modal-menu dropdown">
+      <button type="submit" class="tm_button" data-toggle="dropdown">Delete</button>
+      <div class="dropdown-menu" role="menu">
+        <ul>
+          <li><a class="fgred trash-button">Delete Selected</a></li>
+          <li><a>Keep Selected</a></li>
+        </ul>
+        <ul>
+          <li><a><b>Cancel</b></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<% } %>
+
+<div class="tm_mail-box-scroll email-threads-list-view">
+<% if(!isMobile() && inbox_tabs_enabled && (emailFolderID == "INBOX" || emailFolderID == "IMPORTANT" || emailFolderID == "CATEGORY_SOCIAL" || emailFolderID == "CATEGORY_PROMOTIONS" || emailFolderID == "CATEGORY_UPDATES")) { %>
+  <ul class="tm_inbox-tabs nav nav-tabs">
+    <li role="presentation" <%= emailFolderID == "IMPORTANT" ? 'class="active"' : "" %>>
+      <a href="#email_folder/IMPORTANT">Primary</a>
+    </li>
+    <li role="presentation" <%= emailFolderID == "CATEGORY_SOCIAL" ? 'class="active"' : "" %>>
+      <a href="#email_folder/CATEGORY_SOCIAL">Social</a>
+    </li>
+    <li role="presentation" <%= emailFolderID == "CATEGORY_PROMOTIONS" ? 'class="active"' : "" %>>
+      <a href="#email_folder/CATEGORY_PROMOTIONS">Promotions</a>
+    </li>
+    <li role="presentation" <%= emailFolderID == "CATEGORY_UPDATES" ? 'class="active"' : "" %>>
+      <a href="#email_folder/CATEGORY_UPDATES">Updates</a>
+    </li>
+  </ul>
+<% } %>
+
+  <table class="tm_table-mail">
+    <tbody class="tm_table-mail-body"></tbody>
+  </table>
+</div>
+
+<div class="tm_mail-box-loading">
+  <svg class="icon busy-indicator"><use xlink:href="/images/symbols.svg#busy-indicator"></use></svg>
+  <span>Loading Content</span>
+</div>

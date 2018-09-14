@@ -1,0 +1,63 @@
+<div class="tm_content-toolbar">
+  <h1 class="tm_template-toolbar-title">Current Filters</h1>
+  <button type="button" class="tm_button tm_button-submit create-email-filters-button">
+    <span>Create New Email Filter</span>
+    <svg class="icon"><use xlink:href="/images/symbols.svg#plus"></use></svg>
+  </button>
+</div>
+
+<div class="tm_filters-container">
+  <ul class="tm_filters">
+    <li class="tm_filters-header">
+      <div class="tm_filters-from">
+        <span>Emails from</span>
+      </div>
+      <div class="tm_filters-contain">
+        <span>That contain these words</span>
+      </div>
+      <div class="tm_filters-to">
+        <span>Sent to</span>
+      </div>
+      <div class="tm_filters-folder">
+        <span>Filter to folder</span>
+      </div>
+      <div class="tm_filters-actions">
+      </div>
+    </li>
+    {{#emailFilters}}
+    {{#if id}}
+    <li class="tm_filters-filter">
+       <div class="tm_filters-from">
+          <span>{{email_addresses.join(", ")}}</span>
+        </div>
+        <div class="tm_filters-contain">
+          <span>{{words.join(", ")}}</span>
+        </div>
+        <div class="tm_filters-to">
+          <span>{{email_account}}</span>
+        </div>
+        <div class="tm_filters-folder">
+          <span>{{email_folder}}</span>
+        </div>
+        <div class="tm_filters-actions">
+          <button class="tm_button tm_button-ghost start-edit-email-filter-button"
+                  title="Edit Filter"
+                  data-id="{{id}}">
+            <svg class="icon">
+              <use xlink:href="/images/symbols.svg#edit"></use>
+            </svg>
+          </button>
+          <button class="tm_button tm_button-ghost delete-email-filter-button"
+                  title="Delete Filter"
+                  data-id="{{id}}">
+            <svg class="icon">
+              <use xlink:href="/images/symbols.svg#delete"></use>
+            </svg>
+          </button>
+        </div>
+    </li>
+    {{/if}}
+    {{/emailFilters}}
+  </ul>
+  <div class="tm_empty-pane" style="display:none;">You have no email filters.</div>
+</div>

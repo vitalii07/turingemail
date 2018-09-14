@@ -1,0 +1,137 @@
+<!-- <div class="tm_page-header">
+  <div class="tm_button-stack">
+    <button class="tm_button view-mode-table {{#if viewMode == 'table'}}pressed{{/if}}" data-toggle="tooltip" data-placement="top" title="Show as Table">
+      <svg class="icon"><use xlink:href="/images/symbols.svg#split-horizontal"></use></svg>
+    </button>
+    <button class="tm_button view-mode-gallery {{#if viewMode == 'gallery'}}pressed{{/if}}" data-toggle="tooltip" data-placement="top" title="Show as Gallery">
+      <svg class="icon"><use xlink:href="/images/symbols.svg#split-grid"></use></svg>
+    </button>
+  </div>
+</div> -->
+
+<div class="tm_content-box tm_attachment-content">
+  <div class="tm_toolbar tm_attachment-toolbar">
+    <div class="tm_content-tabs">
+      {{#typeFilters:type}}
+      <a class="{{#if typeFilter == type}}active{{/if}}" data-attachment-type="{{type}}">
+        <span class="tm_counter">
+          <span class="tm_counter-label">{{this}}</span>
+          <small class="tm_counter-value">{{counts[type]}}</small>
+        </span>
+      </a>
+      {{/typeFilters}}
+    </div>
+
+    <div class="expander"></div>
+
+    <!--<div class="tm_input-search">
+      <input type="search" class="tm_input" placeholder="Filter by name or subject">
+      <button type="reset">
+        <svg class="icon"><use xlink:href="/images/symbols.svg#reset"></use></svg>
+      </button>
+    </div>-->
+
+    <!--span class="tm_toolbar-label">Sort</span>
+    <div class="dropdown sort-dropdown">
+      <button class="tm_button tm_button-caret sort-dropdown-menu" data-toggle="dropdown">Name</button>
+      <ul class="dropdown-menu pull-right" role="menu">
+        <li role="presentation"><a role="menuitem" tabindex="-1" data-order-by="name">Name</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" data-order-by="size">Size</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" data-order-by="date">Date</a></li>
+      </ul>
+    </div-->
+  </div>
+
+  <div class="tm_attachment-scrollview">
+    {{#if viewMode == "table"}}
+    <table class="tm_attachment-table">
+      <thead>
+        <tr>
+          <th></th>
+          {{#orderFields:field}}
+          <th>
+            <a class="tm_datagrid-sort" title="Sort by {{this}}" data-order-by="{{field}}">
+              {{this}}&nbsp;<small>{{#if orderField==field}}({{orderDir}}){{/if}}</small>
+            </a>
+          </th>
+          {{/orderFields}}
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#emailAttachments:i}}
+        <tr class="tm_attachment" intro="fly:{
+          x: 0,
+          y: {{i >= prevFilteredCollectionCount ? -53 : 0}},
+          delay: {{i >= prevFilteredCollectionCount ? (i - prevFilteredCollectionCount) * 50 : 0}},
+          duration: {{i >= prevFilteredCollectionCount ? 400 : 0}}
+        }">
+          <td class="tm_attachment-fileicon">
+            {{#if getFileType(content_type) == "image"}}
+              <svg class="icon"><use xlink:href="/images/symbols.svg#file-image"></use></svg>
+            {{else}}
+              {{#if getFileType(content_type) == "document"}}
+                <svg class="icon"><use xlink:href="/images/symbols.svg#file-document"></use></svg>
+              {{else}}
+                <svg class="icon"><use xlink:href="/images/symbols.svg#attachment"></use></svg>
+              {{/if}}
+            {{/if}}
+          </td>
+          <td class="tm_attachment-filename">{{filename}}</td>
+          <td class="tm_attachment-filesize">{{bytesToHumanReadableFileSize(file_size)}}</td>
+          <td class="tm_attachment-subject">{{from_subject}}</td>
+          <td class="tm_attachment-date">{{formatDate(date)}}</td>
+          <td class="tm_attachment-actions" data-uid="{{uid}}">
+            <div class="tm_button-stack">
+              <button class="tm_button fgblue preview-attachment-button">Preview</button>
+              <div class="dropdown more-dropdown">
+                <button class="tm_button tm_button-caret" data-toggle="dropdown"></button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="download-attachment-button">Download</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="share-attachment-button">Share</a></li>
+                  <!-- <li role="presentation"><a role="menuitem" tabindex="-1" class="delete-attachment-button">Delete</a></li> -->
+                </ul>
+              </div>
+            </div>
+          </td>
+        </tr>
+      {{/emailAttachments}}
+      </tbody>
+    </table>
+    {{/if}}
+
+    {{#if viewMode == "gallery"}}
+    <div class="tm_attachment-gallery">
+      {{#emailAttachments:i}}
+      <div class="item {{#if (i % 6 == 2)}}w2{{/if}}" data-uid="{{uid}}">
+        <div class="tm_attachment-image">
+          <a class="tm_attachment-image-link">
+            <img src="{{file_thumb}}" alt="{{filename}}">
+          </a>
+          <div class="tm_attachment-caption">
+            <span class="tm_attachment-file">
+              <small class="tm_attachment-filename">{{filename}}</small>
+              <small class="tm_attachment-filesize">{{bytesToHumanReadableFileSize(file_size)}}</small>
+            </span>
+            <!--<button class="tm_button tm_button-ghost">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#upload"></use></svg>
+            </button>
+            <button class="tm_button tm_button-ghost">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#envelope-open"></use></svg>
+            </button>-->
+            <div class="dropdown">
+              <button class="tm_button tm_button-ghost tm_button-caret" data-toggle="dropdown"></button>
+              <ul class="dropdown-menu pull-right" role="menu">
+                <li role="presentation"><a role="menuitem" tabindex="-1">Download</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1">Share</a></li>
+                <!-- <li role="presentation"><a role="menuitem" tabindex="-1">Delete</a></li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/emailAttachments}}
+    </div>
+    {{/if}}
+  </div>
+</div>

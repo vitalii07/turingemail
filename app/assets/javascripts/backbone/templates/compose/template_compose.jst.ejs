@@ -1,0 +1,73 @@
+<div class="modal fade compose-modal tm_modal-template" tabindex="-1" role="dialog">
+  <div class="modal-dialog compose-modal-dialog compose-modal-dialog-small">
+
+    <form class="compose-form">
+      <div class="tm_compose-modal-header">
+        <div class="tm_compose-modal-header-title">
+          {{#if emailTemplate.uid}}
+          Edit Template
+          {{else}}
+          New Template
+          {{/if}}
+        </div>
+        <button type="button" class="tm_modal-button tm_modal-button-dark tm_modal-button-expand compose-modal-size-toggle">
+          <svg class="icon icon-compress"><use xlink:href="/images/symbols.svg#modal-compress"></use></svg>
+          <svg class="icon icon-expand"><use xlink:href="/images/symbols.svg#modal-expand"></use></svg>
+        </button>
+        <button type="button" class="tm_modal-button tm_modal-button-dark" data-dismiss="modal">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#modal-close"></use></svg>
+        </button>
+      </div>
+
+      <div class="tm_modal-content">
+        <div class="tm_modal-body tm_modal-body-template">
+          <div class="tm_compose-header">
+            <div class="tm_compose-field">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#compose-subject"></use></svg>
+              <input type="text" class="tm_input name-input" placeholder="Template Name" value="{{emailTemplate.name}}" required>
+            </div>
+          </div>
+
+          <div class="tm_compose-body">
+            <textarea class="compose-template-body" value="{{emailTemplate.html}}"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="tm_compose-footer tm_compose-modal-footer">
+        <div class="expander"></div>
+        <div class="dropup tm_category-dropup">
+          <label class="tm_compose-footer-label">Template Category</label>
+          <button type="button" class="tm_button tm_button-big tm_button-dark tm_button-caret" data-toggle="dropdown">
+            <span>
+              {{#if emailTemplate.category_uid}}
+              {{categoryNames[emailTemplate.category_uid]}}
+              {{else}}
+              All Templates
+              {{/if}}
+            </span>
+          </button>
+          <ul class="dropdown-menu pull-right" role="menu">
+            <li role="presentation"><a role="menuitem" tabindex="-1" data-uid="">All Templates</a></li>
+            {{#emailTemplateCategories}}
+            <li role="presentation"><a role="menuitem" tabindex="-1" data-uid="{{uid}}">{{name}}</a></li>
+            {{/emailTemplateCategories}}
+            <li role="presentation" class="tm_new-category">
+              {{#if newCategory}}
+              <input type="text" class="tm_new-category-name" placeholder="Start Type!" value="{{newCategory.name}}">
+              {{else}}
+              <a role="menuitem" tabindex="-1" class="start-new-category-button">+ New Category</a>
+              {{/if}}
+            </li>
+          </ul>
+        </div>
+
+        <button type="button" class="tm_button tm_button-submit save-button">
+          <svg class="icon big"><use xlink:href="/images/symbols.svg#compose-save"></use></svg>
+          <span>Save Template</span>
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>

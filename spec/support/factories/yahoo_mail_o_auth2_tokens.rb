@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: yahoo_mail_o_auth2_tokens
+#
+#  id              :integer          not null, primary key
+#  api_id   :integer
+#  api_type :string(255)
+#  access_token    :text
+#  expires_in      :integer
+#  issued_at       :integer
+#  refresh_token   :text
+#  expires_at      :datetime
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
+# Read about factories at https://github.com/thoughtbot/factory_girl
+
+FactoryGirl.define do
+  factory :yahoo_mail_o_auth2_token do
+    association :api, :factory => :gmail_account
+
+    access_token 'factory'
+    expires_in 360
+    issued_at 360
+    refresh_token 'factory'
+
+    expires_at (DateTime.now + 24.hours).rfc2822
+  end
+end

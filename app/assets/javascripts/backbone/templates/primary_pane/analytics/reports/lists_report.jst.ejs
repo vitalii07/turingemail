@@ -1,0 +1,78 @@
+<% function printListStatsRows(listStats) {
+  if (listStats[0] != null && listStats[0] != "") { %>
+    <td><%= listStats[0] %></td>
+  <% } else { %>
+    <td><%= listStats[1] %></td>
+  <% } %>
+  <td><%= listStats[2] %></td>
+<% } %>
+
+<% if(!isMobile()) { %>
+<div class="tm_box-heading">
+  <h4>Lists Report</h4>
+</div>
+<% } %>
+<table class="tm_datagrid tm_datagrid-lined tm_datagrid-list-report list-report-statistics">
+  <% if (lists_email_daily_average.length > 0) { %>
+    <tr>
+      <th class="tm_datagrid-heading" colspan="2">Lists email daily average</th>
+    </tr>
+    <% for (var i = 0; i < lists_email_daily_average.length; i++) {%>
+      <tr>
+        <% printListStatsRows(lists_email_daily_average[i]) %>
+      </tr>
+    <% } %>
+  <% } %>
+  <% if (emails_per_list.length > 0) { %>
+    <tr>
+      <th class="tm_datagrid-heading" colspan="2">Emails per list</th>
+    </tr>
+    <% for (var i = 0; i < emails_per_list.length; i++) {%>
+      <tr>
+        <% printListStatsRows(emails_per_list[i]) %>
+      </tr>
+    <% } %>
+  <% } %>
+  <% if (email_threads_per_list.length > 0) { %>
+    <tr>
+      <th class="tm_datagrid-heading" colspan="2">Email threads per list</th>
+    </tr>
+    <% for (var i = 0; i < email_threads_per_list.length; i++) {%>
+      <tr>
+        <% printListStatsRows(email_threads_per_list[i]) %>
+      </tr>
+    <% } %>
+  <% } %>
+  <% if (email_threads_replied_to_per_list.length > 0) { %>
+    <tr>
+      <th class="tm_datagrid-heading" colspan="2">Email threads replied to per list</th>
+    </tr>
+    <% for (var i = 0; i < email_threads_replied_to_per_list.length; i++) {%>
+      <tr>
+        <% printListStatsRows(email_threads_replied_to_per_list[i]) %>
+      </tr>
+    <% } %>
+  <% } %>
+  <% if (sent_emails_per_list.length > 0) { %>
+    <tr>
+      <th class="tm_datagrid-heading" colspan="2">Sent emails per list</th>
+    </tr>
+    <% for (var i = 0; i < sent_emails_per_list.length; i++) {%>
+      <tr>
+        <% printListStatsRows(sent_emails_per_list[i]) %>
+      </tr>
+    <% } %>
+  <% } %>
+  <% if (sent_emails_replied_to_per_list.length > 0) { %>
+    <tr>
+      <th class="tm_datagrid-heading" colspan="2">Sent emails replied to per list</th>
+    </tr>
+    <% for (var i = 0; i < sent_emails_replied_to_per_list.length; i++) { %>
+      <% if (sent_emails_replied_to_per_list[i].length > 0) { %>
+        <tr>
+          <% printListStatsRows(sent_emails_replied_to_per_list[i]) %>
+        </tr>
+      <% } %>
+    <% } %>
+  <% } %>
+</table>

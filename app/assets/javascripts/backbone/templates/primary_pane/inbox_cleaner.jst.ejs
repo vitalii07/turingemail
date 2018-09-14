@@ -1,0 +1,20 @@
+<div class="tm_page-header">
+  <div>
+    {{#cleanerOverview.report_date}}
+    <span class="tm_toolbar-label tm_toolbar-small">
+      <span>Clean date:</span>
+      <span class="fgdarkgray">{{cleanerOverview.report_date}}</span>
+    </span>
+    {{/cleanerOverview.report_date}}
+  </div>
+</div>
+
+<div class="tm_cleaner-container">
+  <h1>Your inbox contains <span class="fgred">{{ cleanerOverview.num_emails }}</span> Emails</h1>
+  <p>Inbox Cleaner will analyze your inbox and group similar emails for you to archive unwanted emails.</p>
+  <button class="tm_button tm_button-submit tm_button-cleaner">
+    <span>Analyze My Inbox</span>
+    <svg class="icon"><use xlink:href="/images/symbols.svg#analize"></use></svg>
+  </button>
+  <p>Approximately <span class="fgred">5 mins</span></p>
+</div>

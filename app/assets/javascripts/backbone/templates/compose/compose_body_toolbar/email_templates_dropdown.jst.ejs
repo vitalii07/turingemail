@@ -1,0 +1,53 @@
+<div class="email-templates">
+  <div class="dropdown email-templates-dropdown-div">
+    <button class="tm_button tm_button-caret" data-toggle="dropdown" id="emailTemplatesDropdownMenu" tabindex="-1">Templates</button>
+    <ul class="dropdown-menu email-templates-dropdown" role="menu" aria-labelledby="emailTemplatesDropdownMenu">
+      {{#emailTemplates}}
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" class="load-email-template">{{name}}</a>
+        </li>
+      {{/emailTemplates}}
+      {{#if emailTemplates.length > 0}}
+        <li role="presentation" class="divider"></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" class="new-email-template">Save as a New Template</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" class="update-email-template">Replace an Existing Template</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" class="delete-email-template">Delete an Existing Template</a></li>
+      {{/if}}
+      <li role="presentation">
+        <a role="menuitem" tabindex="-1" class="create-email-template">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#plus"></use></svg>
+          <span>Create New</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="create-email-templates-dialog-form" title="Create Email Template">
+  <form>
+    <p>Please enter a name for the new email template below and click &quot;Create&quot; button to continue.</p>
+    <input type="text" class="tm_input email-template-name" value="{{newEmailTemplate.name}}">
+  </form>
+</div>
+
+<div class="delete-email-templates-dialog-form" title="Delete Email Template">
+  <form>
+    <p>Please select a template you want delete from the list below and click &quot;Delete&quot; button to confirm.</p>
+    <select class="tm_select">
+    {{#emailTemplates}}
+      <option value="{{name}}">{{name}}</option>
+    {{/emailTemplates}}
+    </select>
+  </form>
+</div>
+
+<div class="update-email-templates-dialog-form" title="Replace Email Template">
+  <form>
+    <p>Please select a template you want update from the list below and click &quot;Replace&quot; button to continue.</p>
+    <select class="tm_select">
+    {{#emailTemplates}}
+      <option value="{{name}}">{{name}}</option>
+    {{/emailTemplates}}
+    </select>
+  </form>
+</div>

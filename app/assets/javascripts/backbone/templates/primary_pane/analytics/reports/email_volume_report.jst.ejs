@@ -1,0 +1,27 @@
+<% if(!isMobile()) { %>
+<div class="tm_box-heading">
+  <h4>Email Volume Report</h4>
+</div>
+<div class="tm_charts">
+  <div class="emails-per-day-chart"></div>
+  <div class="emails-per-week-chart"></div>
+  <div class="emails-per-month-chart"></div>
+</div>
+<% } else { %>
+<div class="tm_charts">
+  <div class="tm_box-heading">
+    <h4>Daily</h4>
+  </div>
+  <div class="tm_chart-scrollable">
+    <div class="emails-per-day-chart"></div>
+  </div>
+  <div class="tm_box-heading">
+    <h4>Weekly</h4>
+  </div>
+  <div class="emails-per-week-chart"></div>
+  <div class="tm_box-heading">
+    <h4>Monthly</h4>
+  </div>
+  <div class="emails-per-month-chart"></div>
+</div>
+<% } %>

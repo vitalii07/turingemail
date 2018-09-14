@@ -1,0 +1,20 @@
+<% if(!isMobile()) { %>
+<div class="tm_box-heading">
+  <h4>Top Contacts Report</h4>
+</div>
+<div class="tm_charts">
+  <div class="incoming-emails-container"></div>
+  <div class="outgoing-emails-container"></div>
+</div>
+<% } else { %>
+<div class="tm_charts">
+  <div class="tm_box-heading">
+    <h4>Incoming Emails</h4>
+  </div>
+  <div class="incoming-emails-container"></div>
+  <div class="tm_box-heading">
+    <h4>Outgoing Emails</h4>
+  </div>
+  <div class="outgoing-emails-container"></div>
+</div>
+<% } %>

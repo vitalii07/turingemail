@@ -1,0 +1,93 @@
+<div class="tm_signature-compose{{#if mobileShowEditor || currentEmailSignature}} visible{{/if}}">
+  <textarea class="form-control compose-signature" rows="15"></textarea>
+</div>
+
+<% if(!isMobile()) { %>
+<div class="tm_signature-toolbar">
+  {{#if currentEmailSignature}}
+  <button type="button" class="tm_button tm_button-cancel cancel-current-email-signature">
+    <span>Cancel</span>
+    <svg class="icon"><use xlink:href="/images/symbols.svg#modal-close"></use></svg>
+  </button>
+  {{/if}}
+
+  <button type="button" class="tm_button tm_button-submit save-email-signature">
+    <span>
+    {{#if currentEmailSignature}}
+      Update Signature
+    {{else}}
+      Save Signature
+    {{/if}}
+    </span>
+    <svg class="icon"><use xlink:href="/images/symbols.svg#plus"></use></svg>
+  </button>
+</div>
+<% } else { %>
+<div class="tm_mobile-bottom-toolbar">
+  {{#if mobileShowEditor || currentEmailSignature}}
+  <button type="button" class="tm_button cancel-current-email-signature">Cancel</button>
+  <div class="expander"></div>
+  <button type="button" class="tm_button save-email-signature">
+    <b>
+    {{#if currentEmailSignature}}
+      Update Signature
+    {{else}}
+      Save Signature
+    {{/if}}
+    </b>
+  </button>
+  {{else}}
+  <div class="expander"></div>
+  <button type="button" class="tm_button create-email-signature">Create New Signature</button>
+  <div class="expander"></div>
+  {{/if}}
+</div>
+<% } %>
+
+<div class="tm_signatures">
+  <ul class="{{#if mobileShowEditor || currentEmailSignature}}editing{{/if}}">
+    {{#emailSignatures}}
+    <li class="tm_signature-preview" data-uid="{{uid}}">
+      <div class="tm_signature-preview-header">
+        <div class="tm_signature-preview-name">{{name}}</div>
+        <div class="tm_signature-preview-buttons">
+          <button class="tm_button tm_button-ghost edit-email-signature" title="Edit Signature">
+            <svg class="icon"><use xlink:href="/images/symbols.svg#edit"></use></svg>
+          </button>
+          <% if(!isMobile()) { %>
+          <button class="tm_button tm_button-ghost delete-email-signature" title="Delete Signature">
+            <svg class="icon"><use xlink:href="/images/symbols.svg#delete"></use></svg>
+          </button>
+          <% } else { %>
+          <div class="tm_modal-menu dropdown">
+            <button type="button" class="tm_button tm_button-ghost" data-toggle="dropdown">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#delete"></use></svg>
+            </button>
+            <div class="dropdown-menu" role="menu">
+              <ul>
+                <li><a class="delete-email-signature fgred">Delete Signature</a></li>
+                <li><a class="cancel-current-email-signature">Keep Signature</a></li>
+              </ul>
+              <ul>
+                <li><a class="cancel-current-email-signature"><b>Cancel</b></a></li>
+              </ul>
+            </div>
+          </div>
+          <% } %>
+          <label class="tm_signature-preview-radio">
+            <input type="radio" name="{{emailSignatureUID}}" value="{{uid}}"><span></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="tm_signature-preview-html">
+        {{{html}}}
+      </div>
+    </li>
+    {{/emailSignatures}}
+  </ul>
+
+  {{#if currentEmailSignature && editingStarted}}
+  <div class="tm_signatures-overlay"></div>
+  {{/if}}
+</div>

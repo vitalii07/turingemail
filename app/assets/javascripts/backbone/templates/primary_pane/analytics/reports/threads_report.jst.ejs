@@ -1,0 +1,16 @@
+<% if(!isMobile()) { %>
+<div class="tm_box-heading">
+  <h4>Threads Report</h4>
+</div>
+<% } %>
+<table class="tm_datagrid tm_datagrid-lined tm_datagrid-list-report list-report-statistics">
+  <tr>
+    <th class="tm_datagrid-heading" colspan="2">Top Email Threads</th>
+  </tr>
+  <% for (var i = 0; i < top_email_threads.length; i++) { %>
+    <tr>
+      <td><a href="#email_thread/<%= top_email_threads[i].uid %>"><%= top_email_threads[i].email_subject %></a></td>
+      <td><%= top_email_threads[i].emails_count %>&nbsp;emails</td>
+    </tr>
+  <% } %>
+</table>

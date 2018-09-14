@@ -1,0 +1,2 @@
+id,gmail_account_id,label_id,name,message_list_visibility,label_list_visibility,label_type,created_at,updated_at,num_threads,num_unread_threads
+1,1,INBOX,INBOX,hide,labelShow,system,2015-04-30 00:58:11.012126,2015-05-04 02:22:49.498947,5,1

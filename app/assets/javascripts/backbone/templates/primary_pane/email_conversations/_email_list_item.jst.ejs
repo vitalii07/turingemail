@@ -1,0 +1,40 @@
+<div class="tm_contact-inbox-email {{#if from_address == userAddress}}tm_contact-inbox-email-out{{else}}tm_contact-inbox-email-in{{/if}}"
+     data-uid="{{uid}}">
+  <div class="tm_email-user">
+    <span class="tm_userpic">
+      {{#if from_address == userAddress}}
+      <%=
+        this.insertPartial(
+          "shared/avatar",
+          { "urlSource": "user.profile_picture", "width": 40, "height": 40 }
+        )
+      %>
+      {{else}}
+      <%=
+        this.insertPartial(
+          "shared/avatar",
+          { "urlSource": "people[0].avatar_url", "width": 40, "height": 40 }
+        )
+      %>
+      {{/if}}
+    </span>
+  </div>
+
+  <div class="tm_contact-inbox-email-content">
+    <div class="tm_contact-inbox-email-header">
+      <span class="tm_contact-inbox-email-from">{{fromPreview(from_address, from_name)}}</span>
+    </div>
+    <div class="tm_contact-inbox-email-body">
+      {{#if html_part || body_text}}
+      {{{html_part || body_text}}}
+      {{else}}
+      {{text_part}}
+      {{/if}}
+    </div>
+    <div class="tm_contact-inbox-email-footer">
+      <time>{{datePreview(date)}}</time>
+      <a class="email_forward_button">Forward</a>
+      <!-- <a class="email_delete_button">Delete</a> -->
+    </div>
+  </div>
+</div>

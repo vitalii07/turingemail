@@ -1,0 +1,17 @@
+<% if(!isMobile()) { %>
+<div class="tm_box-heading">
+  <h4>Attachments Report</h4>
+</div>
+<div class="tm_charts">
+  <div class="attachments-chart"></div>
+</div>
+<% } else { %>
+<div class="tm_box-heading">
+  <h4>Attachments and Average File Size</h4>
+</div>
+<div class="tm_charts">
+  <div class="tm_chart-scrollable">
+    <div class="attachments-chart"></div>
+  </div>
+</div>
+<% } %>

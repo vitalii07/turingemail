@@ -1,0 +1,2 @@
+id,admin,email,password,login_attempt_count,created_at,updated_at,profile_picture,name,given_name,family_name
+1,f,rubyonrails103@gmail.com,aVerySecurePassword,0,2015-04-29 16:33:03.307443,2015-04-29 16:33:03.307443,https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg,"","",""

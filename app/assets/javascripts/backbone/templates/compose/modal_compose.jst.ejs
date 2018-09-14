@@ -1,0 +1,184 @@
+<div class="modal fade compose-modal modal-top" tabindex="-1" role="dialog">
+  <div class="modal-dialog compose-modal-dialog compose-modal-dialog-small">
+
+    <form class="compose-form">
+      <div class="tm_compose-modal-header">
+        <button type="button" class="tm_modal-button tm_modal-button-dark tm_modal-button-expand compose-modal-size-toggle">
+          <svg class="icon icon-compress"><use xlink:href="/images/symbols.svg#modal-compress"></use></svg>
+          <svg class="icon icon-expand"><use xlink:href="/images/symbols.svg#modal-expand"></use></svg>
+        </button>
+        <button type="button" class="tm_modal-button tm_modal-button-dark compose-modal-close-toggle" data-dismiss="modal">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#modal-close"></use></svg>
+        </button>
+      </div>
+
+      <div class="tm_modal-content">
+        <div class="tm_modal-body tm_modal-body-compose">
+          <div class="tm_compose-header">
+            <div class="tm_compose-field">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#compose-address"></use></svg>
+              <input type="text" class="tm_input to-input" placeholder="To" value="{{email._tos}}">
+              <div class="tm_compose-copyto">
+                <span class="display-cc">Cc</span>
+                <span class="display-bcc">Bcc</span>
+              </div>
+            </div>
+            <div class="tm_compose-field cc-input-wrapper">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#compose-address"></use></svg>
+              <input type="text" class="tm_input cc-input" placeholder="Cc" value="{{email._ccs}}">
+            </div>
+            <div class="tm_compose-field bcc-input-wrapper">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#compose-address"></use></svg>
+              <input type="text" class="tm_input bcc-input" placeholder="Bcc" value="{{email._bccs}}">
+            </div>
+            <div class="tm_compose-field">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#compose-subject"></use></svg>
+              <input type="text" class="tm_input subject-input" placeholder="Subject" value="{{email.subject}}">
+            </div>
+          </div>
+
+          <div class="tm_compose-body">
+            <textarea class="compose-email-body" value="{{email.html_part}}"></textarea>
+          </div>
+
+          <div class="tm_compose-footer">
+            <ul class="tm_upload-attachments"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tm_compose-footer tm_compose-modal-footer">
+        <div class="dropup">
+          <label class="tm_compose-footer-label">Remind</label>
+          <button type="button" class="tm_button tm_button-big tm_button-dark tm_button-caret dropdown-reminder-button" data-toggle="dropdown">
+            <span>Select Specifics</span>
+          </button>
+          <ul class="dropdown-menu dropdown-reminder" role="menu">
+            <li style="display:none;">
+              <label>
+                <input type="radio" name="{{email.reminder_type}}" class="i-checks" value="never">
+                <span>Select Specifics</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <span>Select Time</span>
+                <div class="reminder-collapse reminder-time-section">
+                  <ul class="reminder-collapse-section">
+                    <li>
+                      <label>
+                        <input type="radio" class="i-checks" value="<%= moment().add(1, 'hours').format('L h:mm a') %>">
+                        <span>1 Hour</span>
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="radio" class="i-checks" value="<%= moment().add(4, 'hours').format('L h:mm a') %>">
+                        <span>4 Hours</span>
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="radio" class="i-checks" value="<%= moment().add(24, 'hours').format('L h:mm a') %>">
+                        <span>24 Hours</span>
+                      </label>
+                    </li>
+                  </ul>
+                  <ul class="reminder-collapse-section">
+                    <li>
+                      <label>
+                        <input type="radio" class="i-checks" value="<%= moment().add(1, 'weeks').format('L h:mm a') %>">
+                        <span>1 Week</span>
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="radio" class="i-checks" value="<%= moment().add(1, 'months').format('L h:mm a') %>">
+                        <span>1 Month</span>
+                      </label>
+                    </li>
+                  </ul>
+                  <ul class="reminder-collapse-section">
+                    <li>
+                      <input type="text" class="tm_input tm_input-dark datetimepicker reminder-datetimepicker" placeholder="Set a time &#43; date" value="{{email._reminder_time}}">
+                    </li>
+                  </ul>
+                </div>
+              </label>
+            </li>
+            <li>
+              <label>
+                <span>Select When</span>
+                <div class="reminder-collapse">
+                  <ul class="reminder-collapse-section">
+                    <li>
+                      <label>
+                        <input type="radio" name="{{email.reminder_type}}" class="i-checks" value="never">
+                        <span>Never</span>
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="radio" name="{{email.reminder_type}}" class="i-checks" value="no_reply">
+                        <span>If no reply</span>
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="radio" name="{{email.reminder_type}}" class="i-checks" value="always">
+                        <span>Regardless</span>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+              </label>
+            </li>
+          </ul>
+        </div>
+        <div class="tm_compose-modal-tracking">
+          <label class="tm_compose-footer-label">Tracking</label>
+          <input type="checkbox" class="tracking-switch switch" checked="{{email.tracking_enabled}}">
+        </div>
+        <div class="expander"></div>
+        <div class="tm_input-with-button">
+          <input type="text" class="tm_input tm_input-big tm_input-dark datetimepicker send-later-datetimepicker" placeholder="Send Later Date &amp; Time">
+          <div class="tm_input-button">
+            <button type="button" class="reset-datetimepicker">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#reset"></use></svg>
+            </button>
+          </div>
+        </div>
+        <div class="tm_button-stack">
+          <button type="button" class="tm_button tm_button-submit send-button main-send-button">
+            <svg class="icon big"><use xlink:href="/images/symbols.svg#compose-send"></use></svg>
+            <span class="send-button-text">Send</span>
+          </button>
+          <div class="dropdown">
+            <button type="button" class="tm_button tm_button-caret tm_button-submit" data-toggle="dropdown"></button>
+            <ul class="dropdown-menu pull-right send-button-dropdown-menu" role="menu">
+              <li>
+                <a class="send-button">
+                  <svg class="icon big"><use xlink:href="/images/symbols.svg#compose-send"></use></svg>
+                  <span>Send</span>
+                </a>
+              </li>
+              <li>
+                <a class="send-and-archive-button">
+                  <svg class="icon big"><use xlink:href="/images/symbols.svg#compose-archive"></use></svg>
+                  <span>Send &amp; Archive</span>
+                </a>
+              </li>
+              <li>
+                <a class="save-button">
+                  <svg class="icon big"><use xlink:href="/images/symbols.svg#sidebar-drafts"></use></svg>
+                  <span>Save Draft</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

@@ -1,0 +1,109 @@
+<div class="modal fade compose-modal tm_modal-filters" tabindex="-1" role="dialog">
+  <div class="modal-dialog compose-modal-dialog compose-modal-dialog-small">
+
+    <form class="compose-form">
+      <div class="tm_compose-modal-header">
+        <div class="tm_compose-modal-header-title">
+          {{#if emailFilter.uid}}
+          Edit Email Filter
+          {{else}}
+          New Email Filter
+          {{/if}}
+        </div>
+        <button type="button" class="tm_modal-button tm_modal-button-dark" data-dismiss="modal">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#modal-close"></use></svg>
+        </button>
+      </div>
+
+      <div class="tm_modal-content">
+        <div class="tm_modal-body tm_modal-body-filters">
+          <label>Emails from</label>
+          <p>Enter the senders’ email address or leave blank if it doesn’t apply.</p>
+          <input placeholder="From sender"
+                 value="{{emailFilter._email_addresses}}" />
+
+          <label>That contain these words</label>
+          <p>Filter emails that contain these words or series of words.</p>
+          <input placeholder="Separate by a comma or hitting return"
+                 value="{{emailFilter._words}}" />
+
+          <label>Sent to</label>
+          <div class="dropdown tm_dropdown tm_dropdown-filters-to">
+            <input type="hidden"
+                   name="email_account_id"
+                   value="{{emailFilter.email_account_id}}" />
+            <input type="hidden"
+                   name="email_account_type"
+                   value="{{emailFilter.email_account_type}}" />
+            <button type="button"
+                    class="tm_button tm_button-caret {{#if emailFilter.email_account}}selected{{/if}}"
+                    data-toggle="dropdown">
+              <span>
+                {{emailFilter.email_account || "Select email account"}}
+              </span>
+            </button>
+            <ul class="dropdown-menu pull-right email-response-dropdown-menu"
+                role="menu">
+              {{#user.email_accounts}}
+              {{#unless emailFilter.email_account == email}}
+              <li role="presentation">
+                <a role="menuitem"
+                   tabindex="-1"
+                   data-attr="email_account"
+                   data-id="{{id}}"
+                   data-type="EmailAccount">{{email}}</a>
+              </li>
+              {{/unless}}
+              {{/user.email_accounts}}
+            </ul>
+          </div>
+
+          <label>Filter to folder</label>
+          <div class="dropup tm_dropdown tm_dropdown-filters-folder">
+            <input type="hidden"
+                   name="email_folder_id"
+                   value="{{emailFilter.email_folder_id}}" />
+            <input type="hidden"
+                   name="email_folder_type"
+                   value="{{emailFilter.email_folder_type}}" />
+            <button type="button"
+                    class="tm_button tm_button-caret {{#if emailFilter.email_folder}}selected{{/if}}"
+                    data-toggle="dropdown">
+              <span>
+                {{emailFilter.email_folder || "Select folder"}}
+              </span>
+            </button>
+            <ul class="dropdown-menu pull-right email-response-dropdown-menu"
+                role="menu">
+              {{#emailFolders}}
+              {{#unless emailFilter.email_folder == name}}
+              <li role="presentation">
+                <a role="menuitem"
+                   tabindex="-1"
+                   data-attr="email_folder"
+                   data-id="{{id}}"
+                   data-type="{{type}}">{{name}}</a>
+              </li>
+              {{/unless}}
+              {{/emailFolders}}
+              <!-- <li role="presentation"> -->
+              <!--   <a class="tm_dropdown-filters-create" -->
+              <!--      role="menuitem" -->
+              <!--      tabindex="-1">&#43; Create New Folder</a> -->
+              <!-- </li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tm_compose-footer tm_compose-modal-footer">
+        <div class="expander"></div>
+          <button type="button" class="tm_button tm_button-submit save-button">
+          <svg class="icon big"><use xlink:href="/images/symbols.svg#compose-save"></use></svg>
+          <span>Save New Email Filter</span>
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>

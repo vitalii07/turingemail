@@ -1,0 +1,1 @@
+class TuringEmailApp.Models.EmailTracker extends TuringEmailApp.Models.UidModel

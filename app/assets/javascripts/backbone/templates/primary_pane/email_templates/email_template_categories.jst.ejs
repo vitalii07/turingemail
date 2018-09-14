@@ -1,0 +1,85 @@
+<div class="tm_content-toolbar">
+  <h1 class="tm_template-toolbar-title">All categories</h1>
+  <button type="button" class="tm_button tm_button-submit start-create-email-template-category-button">
+    <span>New Category</span>
+    <svg class="icon"><use xlink:href="/images/symbols.svg#plus"></use></svg>
+  </button>
+  <button type="button" class="tm_button tm_button-submit create-email-template-button">
+    <span>New Template</span>
+    <svg class="icon"><use xlink:href="/images/symbols.svg#plus"></use></svg>
+  </button>
+</div>
+
+<div class="tm_template-categories-container">
+{{#if emailTemplates.length+emailTemplateCategories.length || tempCategory}}
+  <ul class="tm_template-categories">
+    {{#tempCategory}}
+    <li>
+      <div class="tm_template-category tm_template-new-category">
+        <div class="tm_template-category-header">
+          <input type="text" class="tm_template-category-title" placeholder="Category Title" value="{{name}}">
+        </div>
+        <div class="tm_template-category-footer">
+          <div class="expander"></div>
+          <button class="tm_button tm_button-ghost finish-create-email-template-category-button" title="Save">
+            <svg class="icon"><use xlink:href="/images/symbols.svg#checkmark"></use></svg>
+          </button>
+          <button class="tm_button tm_button-ghost cancel-create-email-template-category-button" title="Cancel">
+            <svg class="icon"><use xlink:href="/images/symbols.svg#reset"></use></svg>
+          </button>
+        </div>
+      </div>
+    </li>
+    {{/tempCategory}}
+
+    {{#emailTemplateCategories:i}}
+      <li data-uid="{{uid}}">
+        <div class="tm_template-category">
+          <div class="tm_template-category-header">
+            {{#if categoryInEdit && categoryInEdit.uid == uid}}
+            <input type="text" class="tm_template-category-title" value="{{categoryInEdit.name}}" placeholder="Category Title">
+            {{else}}
+            <a href="#email_templates/{{uid}}"><span class="tm_template-category-title">{{name}}</span></a>
+            {{/if}}
+            <span class="tm_template-category-count">{{emailTemplatesCountOfCategory(uid)}}</span>
+          </div>
+          <div class="tm_template-category-footer">
+            <div class="expander"></div>
+            {{#if categoryInEdit && categoryInEdit.uid == uid}}
+            <button class="tm_button tm_button-ghost finish-edit-email-template-category-button" title="Save">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#checkmark"></use></svg>
+            </button>
+            <button class="tm_button tm_button-ghost cancel-edit-email-template-category-button" title="Cancel">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#reset"></use></svg>
+            </button>
+            {{else}}
+            <button class="tm_button tm_button-ghost start-edit-email-template-category-button" title="Edit Category">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#edit"></use></svg>
+            </button>
+            <button class="tm_button tm_button-ghost delete-email-template-category-button" title="Delete Category">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#delete"></use></svg>
+            </button>
+            <button class="tm_button tm_button-ghost create-email-template-button" title="New Template">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#plus"></use></svg>
+            </button>
+            {{/if}}
+          </div>
+        </div>
+      </li>
+    {{/emailTemplateCategories}}
+    <li>
+      <div class="tm_template-category">
+        <div class="tm_template-category-header">
+          <a href="#email_templates/-1"><span class="tm_template-category-title">All Templates</span></a>
+          <span class="tm_template-category-count">{{emailTemplates.length}}</span>
+        </div>
+        <div class="tm_template-category-footer">
+          <small>View templates in all categories</small>
+        </div>
+      </div>
+    </li>
+  </ul>
+{{else}}
+  <div class="tm_empty-pane">You have no email template categories.</div>
+{{/if}}
+</div>

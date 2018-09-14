@@ -1,0 +1,78 @@
+<div class="tm_content-box">
+	<div class="tm_dashboard">
+		<div class="tm_dashboard-accounts">
+			<div class="tm_dashboard-account">
+				<label class="tm_dashboard-heading"><h4>Turing Account</h4></label>
+				<div class="fclear"></div>
+				<label>Username</label>
+				<div class="tm_dashboard-account-info">
+					<div class="tm_dashboard-content">
+						<h5><%= name %></h5>
+						<a href="/users/edit">Update Password</a>
+					</div>
+					<label>Membership</label>
+					<div class="tm_dashboard-content">
+						<h5>Individual</h5>
+						<p>Member since <%= memberSince %></p>
+						<a href="/subscriptions/new">Cancel Membership</a>
+						<!-- <a href="/users/edit">Cancel Membership</a> -->
+					</div>
+				</div>
+			</div>
+			<div class="tm_dashboard-emails">
+				<label class="tm_dashboard-heading"><h4>Email Accounts</h4></label>
+				<div class="tm_dashboard-content">
+					<a href="/signup_accounts">Add New Account</a>
+				</div>
+				<div class="fclear"></div>
+				<label>Account 1</label>
+				<div class="tm_dashboard-email">
+					<div class="tm_dashboard-content">
+						<h5 class="tm_dashboard-address"><%= userAddress %></h5>
+					</div>
+				</div>
+				<% for (var i = 0; i < emailAccounts.length; i++) { %>
+					<label>Account <%= i + 2 %></label>
+					<div class="tm_dashboard-email">
+						<div class="tm_dashboard-content">
+							<h5 class="tm_dashboard-address"><%= emailAccounts[i]["email"] %></h5>
+						</div>
+					</div>
+				<%  } %>
+			</div>
+		</div>
+		<div class="tm_dashboard-payments">
+			<div class="tm_dashboard-payment">
+				<label class="tm_dashboard-heading"><h4>Payment Information</h4></label>
+				<div class="tm_dashboard-content">
+					<!-- <a href="/subscriptions/new">Edit Payment Information</a> -->
+				</div>
+				<div class="fclear"></div>
+
+				<label>Payment Type</label>
+				<div class="tm_dashboard-payment-info">
+					<div class="tm_dashboard-content">
+						<h5>{{paymentInformation.payment_info.card_type}} **** **** **** {{paymentInformation.payment_info.card4}}</h5>
+					</div>
+					{{#paymentInformation.payment_info.billing_address}}
+					<label>Billing Address</label>
+					<div class="tm_dashboard-content">
+						<h5>{{paymentInformation.payment_info.billing_address}}</h5>
+					</div>
+					{{/paymentInformation.payment_info.billing_address}}
+					<label>Next Billing Date</label>
+					<div class="tm_dashboard-content">
+						<h5><%= nextBillingDate %></h5>
+					</div>
+				</div>
+			</div>
+			<div class="tm_dashboard-app">
+				<label><svg class="icon"><use xlink:href="/images/symbols.svg#dashboard-desktop"></use></svg></label>
+				<div class="tm_dashboard-content">
+					<h5>Desktop App</h5>
+					<a href="https://s3-us-west-1.amazonaws.com/turing-downloads/Turing+Email.dmg">Download here</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

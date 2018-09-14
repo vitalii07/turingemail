@@ -1,0 +1,32 @@
+<div class="tm_mail-box ui-layout-center">
+  <div class="tm_mail-box-scroll email-threads-list-view">
+    <table class="tm_table-mail">
+      <tbody class="tm_table-mail-body">
+        <tr class="conversation-search-container">
+      		<td colspan="3">
+      			<div>
+      				<input class="conversation-search" type="search" placeholder="Search"/>
+              <!-- <a href="#" class="conversation-new"><svg><use xlink:href="/images/symbols.svg#plus"></use></svg></a> -->
+      			</div>
+      		</td>
+      	</tr>
+        {{#emailConversations}}
+        <tr data-conversation-id="{{id}}"
+            class="{{#if id == activeEmailConversation.id}}currently-being-read{{/if}}">
+          <%= this.insertPartial("primary_pane/email_conversations/conversation_list_item") %>
+        </tr>
+        {{/emailConversations}}
+      </tbody>
+    </table>
+    {{^emailConversations}}
+    <div class="tm_empty-pane">Your conversations are loading.</div>
+    {{/emailConversations}}
+  </div>
+</div>
+<div class="tm_contact-inbox tm_mail-view ui-layout-east">
+  <div class="tm_contact-inbox-thread">
+  </div>
+  <div class="tm_empty-pane"></div>
+  <form class="tm_contact-inbox-compose">
+  </form>
+</div>

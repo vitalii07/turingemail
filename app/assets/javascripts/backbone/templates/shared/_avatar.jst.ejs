@@ -1,0 +1,9 @@
+<div class="tm_userpic">
+  {{#if <%= urlSource %>}}
+  <img src="{{<%= urlSource %>}}" width="<%= width %>" height="<%= height %>">
+  {{else}}
+  <svg>
+    <use xlink:href="/images/symbols.svg#profile"></use>
+  </svg>
+  {{/if}}
+</div>

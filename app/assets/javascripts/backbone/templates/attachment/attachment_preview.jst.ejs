@@ -1,0 +1,81 @@
+<div class="modal fade compose-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog compose-modal-dialog compose-modal-dialog-large">
+
+
+    <div class="tm_compose-modal-header">
+      <button type="button" class="tm_modal-button tm_modal-button-dark tm_modal-button-compress compose-modal-size-toggle">
+        <svg class="icon icon-compress"><use xlink:href="/images/symbols.svg#modal-compress"></use></svg>
+        <svg class="icon icon-expand"><use xlink:href="/images/symbols.svg#modal-expand"></use></svg>
+      </button>
+      <button type="button" class="tm_modal-button tm_modal-button-dark" data-dismiss="modal">
+        <svg class="icon"><use xlink:href="/images/symbols.svg#modal-close"></use></svg>
+      </button>
+    </div>
+    {{#emailAttachment}}
+    <div class="tm_compose-body">
+      <div class="tm_modal-body tm_modal-body-attachment">
+        {{#if emailAttachment.file_thumb}}
+        <div class="tm_attachment-image">
+          <img src="{{file_thumb}}" alt="{{filename}}">
+        </div>
+        {{/if}}
+        <div class="tm_attachment-filename">
+          <span>{{filename}}</span>
+        </div>
+        <div class="tm_attachment-info">
+          <div class="tm_attachment-info-field">
+            <div class="tm_attachment-info-name">
+              FileSize
+            </div>
+            <div class="tm_attachment-info-value">
+              {{bytesToHumanReadableFileSize(file_size)}}
+            </div>
+          </div>
+          <div class="tm_attachment-info-field">
+            <div class="tm_attachment-info-name">
+              Format
+            </div>
+            <div class="tm_attachment-info-value">
+              {{content_type}}
+            </div>
+          </div>
+          <div class="tm_attachment-info-field">
+            <div class="tm_attachment-info-name">
+              From
+            </div>
+            <div class="tm_attachment-info-value">
+              {{from_address}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/emailAttachment}}
+
+    <div class="tm_compose-footer tm_compose-modal-footer">
+      <button type="button" class="tm_button tm_button-submit share-attachment-button">
+        <span>Share</span>
+      </button>
+      <button type="button" class="tm_button tm_button-submit download-attachment-button">
+        <span>Download</span>
+      </button>
+      <!--<div class="tm_button-stack">
+        <button class="tm_button tm_button-submit more-button">More</button>
+        <div class="dropdown more-dropdown">
+          <button class="tm_button tm_button-submit tm_button-caret" data-toggle="dropdown"></button>
+          <ul class="dropdown-menu pull-right" role="menu">
+            <li role="presentation"><a role="menuitem" tabindex="-1">Action 1</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1">Action 2</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1">Action 3</a></li>
+          </ul>
+        </div>
+      </div>-->
+      <div class="expander"></div>
+      <!-- <button type="button" class="tm_button tm_button-submit delete-attachment-button">
+        <span>Delete</span>
+      </button> -->
+    </div>
+
+
+  </div>
+</div>

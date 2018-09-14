@@ -1,0 +1,187 @@
+<div class="tm_content-box tm_subscriptions-content">
+  <ul class="tm_content-tabs">
+    <li class="active"><a data-toggle="tab" href="#tab-subscribed">Subscribed Lists</a></li>
+    <li><a data-toggle="tab" href="#tab-unsubscribed">Unsubscribed Lists</a></li>
+  </ul>
+
+  <div id="tab-subscribed" class="tm_content-tab-pane active">
+    <% if(!isMobile()) { %>
+    <div class="tm_box-heading">
+      <svg class="icon"><use xlink:href="/images/symbols.svg#section-rules"></use></svg>
+      <div class="expander">
+        <h2>Subscribed Lists</h2>
+        <p>Below are email lists that you are currently subscribed to.</p>
+      </div>
+    </div>
+    <div class="tm_box-content">
+      <div class="tm_mail-box-scroll subscriptions-list-view">
+        {{#if listsSubscribed.length > 0}}
+        <table class="tm_datagrid tm_datagrid-lined">
+          <thead>
+            <tr>
+              <th></th>
+              <th style="width:50%">Name</th>
+              <th style="width:50%">Domain</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#listsSubscribed}}
+            <tr data-uid="{{uid}}">
+              <td><img src="https://plus.google.com/_/favicon?domain={{list_domain}}"></td>
+              <td>{{list_name}}</td>
+              <td>{{list_domain}}</td>
+              <td>
+                <button data-prevent-default type="button" class="tm_button tm_button-blue unsubscribe-list-button">
+                  Unsubscribe
+                </button>
+              </td>
+            </tr>
+            {{/listsSubscribed}}
+          </tbody>
+        </table>
+        {{else}}
+        <div class="tm_settings-empty">You have no subscribed lists</div>
+        {{/if}}
+      </div>
+    </div>
+    <% } else { %>
+    <div class="tm_box-content">
+      <div class="tm_mail-box-scroll subscriptions-list-view">
+        {{#if listsSubscribed.length > 0}}
+        <table class="tm_datagrid tm_datagrid-lined">
+          <tbody>
+            {{#listsSubscribed}}
+            <tr data-uid="{{uid}}">
+              <td><img src="https://plus.google.com/_/favicon?domain={{list_domain}}"></td>
+              <td class="tm_subscription-name">
+                <span>{{list_name}}</span>
+                <small>{{list_domain}}</small>
+              </td>
+              <td class="tm_subscription-count">
+                <span class="fgred">355</span>
+                <small>Total Emails</small>
+              </td>
+              <td>
+                <input type="checkbox" class="i-checks">
+              </td>
+            </tr>
+            {{/listsSubscribed}}
+          </tbody>
+        </table>
+        <div class="tm_mobile-bottom-toolbar" style="display:none;">
+          <div class="expander"></div>
+          <div class="tm_modal-menu dropdown">
+            <button type="button" class="tm_button" data-toggle="dropdown">Unsubscribe</button>
+            <div class="dropdown-menu" role="menu">
+              <ul>
+                <li><a class="fgred">Unsubscribe</a></li>
+              </ul>
+              <ul>
+                <li><a><b>Cancel</b></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="expander"></div>
+        </div>
+        {{else}}
+        <div class="tm_settings-empty">You have no subscribed lists</div>
+        {{/if}}
+      </div>
+    </div>
+    <% } %>
+  </div>
+
+  <div id="tab-unsubscribed" class="tm_content-tab-pane">
+    <% if(!isMobile()) { %>
+    <div class="tm_box-heading">
+      <svg class="icon"><use xlink:href="/images/symbols.svg#section-rules"></use></svg>
+      <div class="expander">
+        <h2>Unsubscribed Lists</h2>
+        <p>Below are email lists that you are currently unsubscribed to.</p>
+      </div>
+    </div>
+    <div class="tm_box-content">
+      <div class="tm_mail-box-scroll subscriptions-list-view">
+        {{#if listsUnsubscribed.length > 0}}
+        <table class="tm_datagrid tm_datagrid-lined">
+          <thead>
+          <tr>
+            <th></th>
+            <th style="width:50%">Name</th>
+            <th style="width:50%">Domain</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          {{#listsUnsubscribed}}
+          <tr data-uid="{{uid}}">
+            <td><img src="https://plus.google.com/_/favicon?domain={{list_domain}}"></td>
+            <td>{{list_name}}</td>
+            <td>{{list_domain}}</td>
+            <td>
+              <button data-prevent-default type="button" class="tm_button tm_button-blue resubscribe-list-button">
+                Resubscribe
+              </button>
+            </td>
+          </tr>
+          {{/listsUnsubscribed}}
+          </tbody>
+        </table>
+        {{else}}
+        <div class="tm_settings-empty">You have no unsubscribed lists</div>
+        {{/if}}
+      </div>
+    </div>
+    <% } else { %>
+    <div class="tm_box-content">
+      <div class="tm_mail-box-scroll subscriptions-list-view">
+        {{#if listsUnsubscribed.length > 0}}
+        <table class="tm_datagrid tm_datagrid-lined">
+          <tbody>
+            {{#listsUnsubscribed}}
+            <tr data-uid="{{uid}}">
+              <td><img src="https://plus.google.com/_/favicon?domain={{list_domain}}"></td>
+              <td class="tm_subscription-name">
+                <span>{{list_name}}</span>
+                <small>{{list_domain}}</small>
+              </td>
+              <td class="tm_subscription-count">
+                <span class="fgred">355</span>
+                <small>Total Emails</small>
+              </td>
+              <td>
+                <input type="checkbox" class="i-checks">
+              </td>
+            </tr>
+            {{/listsUnsubscribed}}
+          </tbody>
+        </table>
+        <div class="tm_mobile-bottom-toolbar" style="display:none;">
+          <div class="expander"></div>
+          <div class="tm_modal-menu dropdown">
+            <button type="button" class="tm_button" data-toggle="dropdown">Resubscribe</button>
+            <div class="dropdown-menu" role="menu">
+              <ul>
+                <li><a class="fgred">Resubscribe</a></li>
+              </ul>
+              <ul>
+                <li><a><b>Cancel</b></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="expander"></div>
+        </div>
+        {{else}}
+        <div class="tm_settings-empty">You have no subscribed lists</div>
+        {{/if}}
+      </div>
+    </div>
+    <% } %>
+  </div>
+
+  <div class="tm_mail-subscriptions-loading">
+    <svg class="icon busy-indicator"><use xlink:href="/images/symbols.svg#busy-indicator"></use></svg>
+    <span>Loading Content</span>
+  </div>
+</div>

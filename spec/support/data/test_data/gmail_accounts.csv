@@ -1,0 +1,2 @@
+id,user_id,service_id,service_type,email,verified_email,sync_started_time,last_history_id_synced,created_at,updated_at,sync_delayed_job_uid,last_sync_at
+1,1,108365219354009500077,gmail,rubyonrails103@gmail.com,t,,,2015-04-29 16:33:07.803731,2015-04-30 00:57:56.45092,,

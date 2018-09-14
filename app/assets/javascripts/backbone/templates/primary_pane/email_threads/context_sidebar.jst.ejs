@@ -1,0 +1,150 @@
+<div class="tm_mail-context-sidebar-content">
+  <div class="tm_user_profile">
+    <div class="tm_userpic">
+      {{#if person.fullcontact_data.photos[0]}}
+      <img src="{{person.fullcontact_data.photos[0].url}}" width="95" height="95">
+      {{else}}
+      <svg>
+        <use xlink:href="/images/symbols.svg#profile"></use>
+      </svg>
+      {{/if}}
+    </div>
+  
+    <h3 class="tm_context-username">
+      <!-- <span class="tm_context-availability offline"></span> -->
+      <span><%= from_name || from_address %></span>
+    </h3>
+    
+    {{#person.fullcontact_data.demographics.locationGeneral}}
+    <small class="tm_context-location">{{person.fullcontact_data.demographics.locationGeneral}}</small>
+    {{/person.fullcontact_data.demographics.locationGeneral}}
+  
+    <button class="tm_button tm_button-submit tm_context-compose" data-send-to-current="">Send an Email</button>
+  </div>
+  <ul class="tm_context-list">
+    <li>
+      <a class="expander" data-send-to-current=""><svg class="icon"><use xlink:href="/images/symbols.svg#social-email"></use></svg> <%= from_address %></a>
+      {{#if (person.is_valid === true)}}
+    <span class="tm_context-verification tm_context-valid">
+      <span>Valid</span>
+      <svg class="icon">
+        <use xlink:href="/images/symbols.svg#checkmark"></use>
+      </svg>
+    </span>
+      {{/if}}
+      {{#if (person.is_valid === false)}}
+    <span class="tm_context-verification tm_context-invalid">
+      <span>Invalid</span>
+      <svg class="icon">
+        <use xlink:href="/images/symbols.svg#reset"></use>
+      </svg>
+    </span>
+      {{/if}}
+    </li>
+    {{#person.fullcontact_data.socialProfiles}}
+    {{#if (type == "twitter")}}
+    <li>
+      <a class="expander" target="_blank" href="{{url}}"><svg class="icon"><use xlink:href="/images/symbols.svg#social-twitter"></use></svg> @{{username}}</a>
+      <div class="show-onhover tm_context-tweets">
+        <ul>
+          {{#twitterTimeline.tweets}}
+          <li>
+            {{#if person.fullcontact_data.photos[0]}}
+            <img src="{{person.fullcontact_data.photos[0].url}}"
+                 width="40"
+                 height="40">
+            {{else}}
+            <svg>
+              <use xlink:href="/images/symbols.svg#profile"></use>
+            </svg>
+            {{/if}}
+            <div class="twitter_profile-tweet">
+              {{text}}
+              <!-- <a href="http:/t.co/lol9gag">http:/t.co/lol9gag</a> -->
+            </div>
+            <div class="twitter_profile-footer">
+              <!-- <a class="twitter_profile-reply" href="#reply">Reply</a> -->
+              <!-- <a class="twitter_profile-retweet" href="#reply">Retweet</a> -->
+              <a class="twitter_profile-posted">{{datePreview(created_at)}}</a>
+            </div>
+          </li>
+          {{/twitterTimeline.tweets}}
+        </ul>
+      </div>
+      {{#if twitterFriendship.is_following === true }}
+      <span>Following</span>
+      {{/if}}
+      {{#if twitterFriendship.is_following === false }}
+      <a id="follow-twitter-account" class="show-onhover">
+        <svg class="icon"><use xlink:href="/images/symbols.svg#plus"></use></svg>
+        <span>Follow</span>
+      </a>
+      {{/if}}
+    </li>
+    {{/if}}
+    {{#if (type == "facebook")}}
+    <li>
+      <a class="expander" target="_blank" href="{{url}}"><svg class="icon"><use xlink:href="/images/symbols.svg#social-facebook"></use></svg> /{{username}}</a>
+      <!-- <a class="show-onhover"> -->
+      <!--   <svg class="icon"><use xlink:href="/images/symbols.svg#plus"></use></svg> -->
+      <!--   <span>Add Friend</span> -->
+      <!-- </a> -->
+    </li>
+    {{/if}}
+    {{#if (type == "googleplus")}}
+    <li>
+      <a class="expander" target="_blank" href="{{url}}"><svg class="icon"><use xlink:href="/images/symbols.svg#social-gplus"></use></svg> /{{username}}</a>
+      <!-- <a class="show-onhover"> -->
+      <!--   <svg class="icon"><use xlink:href="/images/symbols.svg#plus"></use></svg> -->
+      <!--   <span>Add Friend</span> -->
+      <!-- </a> -->
+    </li>
+    {{/if}}
+    {{/person.fullcontact_data.socialProfiles}}
+  </ul>
+
+  <dl class="tm_context-activity">
+    <dt>
+      <b class="expander">Latest Emails</b>
+      {{#emailThreadSubjectsData.next_page_token}}
+      <a id="load-activities">View More</a>
+      {{/emailThreadSubjectsData.next_page_token}}
+    </dt>
+    {{#emailThreadSubjects}}
+    <dd>
+      <a href="#email_thread/{{email_thread_uid}}" class="expander">{{subject}}</a>
+      <!-- <span class="show-onhover fggray">to <a>Robin Bobin</a></span> -->
+      <!-- <span>
+        <svg class="icon"><use xlink:href="/images/symbols.svg#attachment"></use></svg>
+        <span class="fggray">4:30 PM</span>
+      </span> -->
+    </dd>
+    {{/emailThreadSubjects}}
+  </dl>
+
+  <dl class="tm_context-stats">
+    <dt>
+      <b class="expander">Email Thread Stats</b>
+    </dt>
+    <dd>
+      <span class="expander">Number of Messages</span>
+      <span>{{emailThreadStats.emails_count}}</span>
+    </dd>
+    <dd>
+      <span class="expander">Word Count</span>
+      <span>{{emailThreadStats.word_count}}</span>
+    </dd>
+    <dd>
+      <span class="expander">Number of Addresses</span>
+      <span>{{emailThreadStats.num_addresses}}</span>
+    </dd>
+    <dd>
+      <span class="expander">Most Common Word</span>
+      <span>{{emailThreadStats.most_common_word}}</span>
+    </dd>
+    <dd>
+      <span class="expander">Duration</span>
+      <span>{{emailThreadStats.email_thread_duration}}</span>
+    </dd>
+  </dl>
+</div>

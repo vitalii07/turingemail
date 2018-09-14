@@ -1,0 +1,100 @@
+<%
+function outputOtherEmailAccounts(emailAccounts, currentEmailAccountAddress) {
+  for(var i = 0; i < emailAccounts.length; i++) { %>
+    <a href="/mail?email_account_id=<%= emailAccounts[i].email_account_id %>"><%= emailAccounts[i].email %></a>
+  <% }
+}
+%>
+
+<div class="tm_container">
+  <% if(!isMobile()) { %>
+    <div class="tm_toptabs">
+      <a href="#email_folder/INBOX" class="active">Inbox</a>
+      <a href="#email_template_categories">Templates</a>
+      <a href="#analytics">Analytics</a>
+      <a href="#email_attachments">Attachments</a>
+      <a href="#inbox_cleaner">Inbox Cleaner</a>
+      <a href="#list_subscriptions">Subscriptions</a>
+      <a href="#filters">Filters</a>
+      <a href="#email_signatures">Signatures</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#settings">Settings</a>
+      <!-- <a href="#email_trackers">Tracking</a> -->
+      <!-- <a href="#schedule_emails">Scheduling</a> -->
+      <!-- <a href="#email_reminders">Reminders</a> -->
+      <!-- <a href="#apps">Apps</a> -->
+      <button type="button" class="tm_toptabs-options">
+        <a href="#settings"><svg class="icon"><use xlink:href="/images/symbols.svg#plus"></use></svg></a>
+      </button>
+    </div>
+  <% } %>
+  <div class="tm_sidebar"></div>
+  <div class="tm_primary"></div>
+  <% if(isMobile()) { %>
+    <div class="tm_sidebar-right">
+      <div class="tm_sidebar-content">
+        <a href="#email_template_categories">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#template"></use></svg>
+          <span>Templates</span>
+        </a>
+        <a href="#email_attachments">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#attachment"></use></svg>
+          <span>Attachments</span>
+        </a>
+        <a href="#inbox_cleaner">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#cleaner"></use></svg>
+          <span>Inbox Cleaner</span>
+        </a>
+        <a href="#list_subscriptions">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#list"></use></svg>
+          <span>Subscriptions</span>
+        </a>
+        <a href="#email_signatures">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#signature"></use></svg>
+          <span>Signatures</span>
+        </a>
+        <a href="#analytics">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#analytics"></use></svg>
+          <span>Analytics</span>
+        </a>
+        <a href="#settings">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#settings"></use></svg>
+          <span>Settings</span>
+        </a>
+      </div>
+    </div>
+    <div class="tm_sidebar-usermenu">
+      <div class="tm_sidebar-content">
+        <div class="tm_sidebar-usermenu-email">
+          <small>Signed in as</small>
+          <span><%= userAddress %></span>
+        </div>
+        <div class="divider"></div>
+        <a>Switch Account</a>
+        <% outputOtherEmailAccounts(emailAccounts, userAddress); %>
+        <a href="/signup_accounts" class="add-new-account">+ Add New Account</a>
+        <div class="divider"></div>
+        <a href="#welcome_tour" data-shortcut="T">Take the Tour</a>
+        <a href="#faq" data-shortcut="H">Support FAQ</a>
+        <div class="divider"></div>
+        <a href="#about">About Turing</a>
+        <a href="#terms">Terms of Service</a>
+        <a href="#privacy">Privacy Policy</a>
+        <div class="divider"></div>
+        <a href="/users/sign_out" data-method="delete">Sign Out</a>
+      </div>
+    </div>
+  <% } %>
+</div>
+
+<div class="compose-view"></div>
+<div class="template-compose-view"></div>
+<div class="filters-compose-view"></div>
+<div class="confirmation-view"></div>
+<div class="create-folder-view"></div>
+<div class="attachment-preview-view"></div>
+<div class="tour-view"></div>
+<div class="about-view"></div>
+<div class="faq-view"></div>
+<div class="privacy-view"></div>
+<div class="terms-view"></div>

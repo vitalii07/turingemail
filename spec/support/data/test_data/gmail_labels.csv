@@ -1,0 +1,6 @@
+id,gmail_account_id,label_id,name,message_list_visibility,label_list_visibility,label_type,created_at,updated_at,num_threads,num_unread_threads
+5,1,SENT,SENT,hide,labelShow,system,2015-04-30 00:58:43.051249,2015-04-30 00:58:43.470291,1,0
+3,1,IMPORTANT,IMPORTANT,hide,labelHide,system,2015-04-30 00:58:22.962855,2015-04-30 07:56:47.311042,1,1
+1,1,INBOX,INBOX,hide,labelShow,system,2015-04-30 00:58:11.012126,2015-05-04 02:22:49.498947,5,1
+2,1,CATEGORY_UPDATES,CATEGORY_UPDATES,hide,labelHide,system,2015-04-30 00:58:16.388311,2015-05-03 05:16:05.609232,0,0
+4,1,CATEGORY_PERSONAL,CATEGORY_PERSONAL,hide,labelHide,system,2015-04-30 00:58:28.627027,2015-05-03 05:29:19.833532,1,1

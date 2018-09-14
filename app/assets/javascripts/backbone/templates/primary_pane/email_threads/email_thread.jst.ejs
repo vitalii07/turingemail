@@ -1,0 +1,202 @@
+{{#if rendering}}
+<div class="tm_mail-email-thread-loading" style="display:block">
+  <svg class="icon busy-indicator">
+    <use xlink:href="/images/symbols.svg#busy-indicator"></use>
+  </svg>
+  <span>Loading Content</span>
+</div>
+{{else}}
+<div class="tm_mail-thread-header">
+  {{#if !isMobile}}
+
+    {{^isSplitPaneMode}}
+    <button class="tm_button tm_button-rounded email-back-button" title="Back">
+      <svg class="icon">
+        <use xlink:href="/images/symbols.svg#angle-left"></use>
+      </svg>
+    </button>
+    {{/isSplitPaneMode}}
+
+    <div class="tm_mail-thread-subject">
+      <h2>{{{threadPreviewData.subjectPreview}}}</h2>
+    </div>
+
+    {{#if contextSidebarEnabled && !isMobile}}
+    <div class="tm_mail-sidebar-toggle">
+      <input type="checkbox" class="sidebar-switch switch">
+    </div>
+    {{/if}}
+
+  {{else}}
+
+    <div class="tm_mail-thread-subject">
+      <h2>{{{threadPreviewData.subjectPreview}}}</h2>
+      <small>Me, {{emails[0].from_address}}</small>
+    </div>
+
+  {{/if}}
+</div>
+
+<div class="tm_mail-context">
+  <div class="tm_mail-context-threads email-thread">
+    {{#emails:index}}
+    {{#if draft_id}}
+    <div class="tm_email">
+      <div class="tm_email-info">
+
+        <div class="tm_email-title">
+          <div class="tm_email-user{{#if emails.length > 1}} email-collapse-expand{{/if}}">
+            <span class="tm_userpic">
+              <svg>
+                <use xlink:href="/images/symbols.svg#profile"></use>
+              </svg>
+            </span>
+            <span class="tm_email-user-name email-from">
+              <span>Draft message</span>
+              <small>from {{fromPreview}}</small>
+            </span>
+          </div>
+        </div>
+
+        <div class="tm_email-date">{{datePreview}}</div>
+      </div>
+      <div class="tm_email-body tm_email-body-compose">
+        <div class="embedded_compose_view_{{uid}}"></div>
+      </div>
+    </div>
+    {{else}}
+    <div class="tm_email {{#if currentEmailUID != uid}}tm_email-collapsed{{/if}}" data-uid="{{uid}}">
+
+      <div class="tm_email-info">
+        <div class="tm_email-title">
+          <div class="tm_email-user{{#if emails.length > 1}} email-collapse-expand{{/if}}">
+            <span class="tm_userpic">
+              {{#if from_address == meAddress}}
+                {{#if profilePicture}}
+                <img src="{{profilePicture}}" width="95" height="95">
+                {{else}}
+                <svg>
+                  <use xlink:href="/images/symbols.svg#profile"></use>
+                </svg>
+                {{/if}}
+              {{else}}
+                {{#if contactPicture}}
+                <img src="{{contactPicture}}" width="95" height="95">
+                {{else}}
+                <svg>
+                  <use xlink:href="/images/symbols.svg#profile"></use>
+                </svg>
+                {{/if}}
+              {{/if}}
+            </span>
+
+            <span class="tm_email-user-name">
+              <span>{{fromPreview}}</span>
+              <small class="email-to">
+                {{#if contactsText.moreCount}}
+                  {{#if contactsTextCollapsed}}
+                    {{{contactsText.collapsedText}}}
+                    <a class="more-link">{{contactsText.moreCount}}&nbsp;more...</a>
+                  {{else}}
+                    {{{contactsText.fullText}}}
+                    <a class="less-link">Less</a>
+                  {{/if}}
+                {{else}}
+                  {{{contactsText.fullText}}}
+                {{/if}}
+              </small>
+            </span>
+          </div>
+
+          {{#if isMobile}}
+          <button type="button" class="tm_button tm_button-ghost tm_button-show-full">
+            <svg class="icon">
+              <use xlink:href="/images/symbols.svg#angle-right"></use>
+            </svg>
+          </button>
+          {{else}}
+          <div class="email-response-btn-group">
+            <button class="tm_button fgblue email-contacts-tooltip" type="button" data-toggle="popover">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#angle-bottom"></use></svg>
+            </button>
+            {{#if contacts.tos.length + contacts.ccs.length + contacts.bccs.length > 1}}
+            <button type="button" class="tm_button fgblue email_reply_all_button">
+              <svg class="icon" style="width:20px"><use xlink:href="/images/symbols.svg#reply-all"></use></svg>
+            </button>
+            {{/if}}
+            <button type="button" class="tm_button email_reply_button">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#reply"></use></svg>
+            </button>
+            <button type="button" class="tm_button email_forward_button">
+              <svg class="icon"><use xlink:href="/images/symbols.svg#forward"></use></svg>
+            </button>
+          </div>
+          {{/if}}
+        </div>
+
+        {{#if !isMobile}}
+        <div class="tm_email-date">{{datePreview}}</div>
+        {{/if}}
+
+      </div>
+
+      {{#if currentEmailUID == uid}}
+      <div class="tm_email-body" intro-outro="slide">
+        {{#if html_part}}
+        <div class="tm_email-body-html">{{{html_part}}}</div>
+        {{else}}
+
+          {{#if text_part}}
+          <pre class="tm_email-body-pre">{{text_part}}</pre>
+          {{else}}
+            {{#if body_text}}
+            <pre class="tm_email-body-pre">{{{body_text}}}</pre>
+            {{/if}}
+          {{/if}}
+        {{/if}}
+      </div>
+      {{/if}}
+
+      {{#if email_attachments}}
+      <div class="tm_email-attachments">
+        {{#email_attachments}}
+        <a data-prevent-default class="tm_email-attachment" href="{{uid}}">{{filename}}</a>
+        {{/email_attachments}}
+      </div>
+      {{/if}}
+    </div>
+    {{/if}}
+    {{/emails}}
+
+    <div class="tm_mail-thread-actions">
+      {{#if emails[0].contacts.tos.length + emails[0].contacts.ccs.length + emails[0].contacts.bccs.length > 1}}
+      <a class="email_reply_all_button">Reply All</a>
+      {{/if}}
+      <a class="email_reply_button">Reply</a>
+      <a class="email_forward_button">Forward</a>
+      {{#if isMobile}}
+      <div class="tm_modal-menu dropdown">
+        <button type="button" class="tm_mail-thread-delete" data-toggle="dropdown">
+          <svg class="icon">
+            <use xlink:href="/images/symbols.svg#trash"></use>
+          </svg>
+        </button>
+        <div class="dropdown-menu" role="menu">
+          <ul>
+            <li><a class="fgred">Delete Message</a></li>
+            <li><a>Keep Message</a></li>
+          </ul>
+          <ul>
+            <li><a><b>Cancel</b></a></li>
+          </ul>
+        </div>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+
+  {{#if contextSidebarEnabled && !isMobile}}
+  <div class="tm_mail-context-sidebar {{#sidebarCollapsed}}collapsed{{/sidebarCollapsed}}"></div>
+  {{/if}}
+</div>
+{{/if}}

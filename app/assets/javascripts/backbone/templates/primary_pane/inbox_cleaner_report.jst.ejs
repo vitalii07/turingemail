@@ -1,0 +1,80 @@
+{{#if (cleanerReport.progress == 100)}}
+<div class="tm_cleaner-container">
+  <h1>Archive Your Emails</h1>
+  <p>Clean your inbox by selecting groups of emails to archive.</p>
+  <div class="tm_cleaner-result">
+    <ul class="tm_cleaner-result-list">
+      <li class="tm_cleaner-result-row">
+        <span class="tm_cleaner-result-title">Read Emails</span>
+        <span class="tm_cleaner-result-count">{{cleanerReport.read_emails}}</span>
+        <button class="tm_button tm_button-submit" data-category="read">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#archive"></use></svg>
+          <span>Archive All</span>
+        </button>
+      </li>
+      <li class="tm_cleaner-result-row">
+        <span class="tm_cleaner-result-title">List Emails</span>
+        <span class="tm_cleaner-result-count">{{cleanerReport.list_emails}}</span>
+        <button class="tm_button tm_button-submit" data-category="list">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#archive"></use></svg>
+          <span>Archive All</span>
+        </button>
+      </li>
+      <li class="tm_cleaner-result-row">
+        <span class="tm_cleaner-result-title">Calendar Emails</span>
+        <span class="tm_cleaner-result-count">{{cleanerReport.calendar_emails}}</span>
+        <button class="tm_button tm_button-submit" data-category="calendar">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#archive"></use></svg>
+          <span>Archive All</span>
+        </button>
+      </li>
+      <li class="tm_cleaner-result-row">
+        <span class="tm_cleaner-result-title">Auto-Respond Emails</span>
+        <span class="tm_cleaner-result-count">{{cleanerReport.auto_respond_emails}}</span>
+        <button class="tm_button tm_button-submit" data-category="auto_respond">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#archive"></use></svg>
+          <span>Archive All</span>
+        </button>
+      </li>
+    </ul>
+    <div class="tm_cleaner-result-row">
+      <div id="archive-before-date" class="tm_button-stack">
+        <input type="text" class="tm_input tm_input-big datetimepicker" placeholder="Date &amp; Time" value="{{cleanerReport.before_date}}">
+        <button class="tm_button tm_button-big tm_button-caret">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#calendar"></use></svg>
+        </button>
+      </div>
+      <button class="tm_button tm_button-submit" data-category="before">
+        <svg class="icon"><use xlink:href="/images/symbols.svg#archive"></use></svg>
+        <span>Archive All</span>
+      </button>
+    </div>
+    <div class="tm_cleaner-result-row">
+      <div id="archive-from-address" class="tm_search-field">
+        <input type="search" class="tm_input tm_input-big" placeholder="From address" value="{{cleanerReport.from_address}}">
+        <div class="tm_search-field-buttons">
+          <button type="reset">
+            <svg class="icon"><use xlink:href="/images/symbols.svg#reset"></use></svg>
+          </button>
+          <button type="submit">
+            <svg class="icon"><use xlink:href="/images/symbols.svg#search"></use></svg>
+          </button>
+        </div>
+      </div>
+      <button class="tm_button tm_button-submit" data-category="from">
+        <svg class="icon"><use xlink:href="/images/symbols.svg#archive"></use></svg>
+        <span>Archive All</span>
+      </button>
+    </div>
+  </div>
+</div>
+{{else}}
+<div class="tm_cleaner-container">
+  <h1>Analyzing Your Inbox</h1>
+  <p>This may take several minutes to complete.</p>
+  <div class="tm_cleaner-progress">
+    <span data-progress="{{cleanerReport.progress}}%" style="width:{{cleanerReport.progress}}%"></span>
+  </div>
+  <p>Your emails are being sorted for easy archiving.</p>
+</div>
+{{/if}}

@@ -1,0 +1,59 @@
+<% if(!isMobile()) { %>
+<td class="tm_table-mail-userpic conversations-userpic">
+  <%=
+    this.insertPartial(
+      "shared/avatar",
+      { "urlSource": "people[0].avatar_url", "width": 40, "height": 40 }
+    )
+  %>
+</td>
+<td class="tm_table-mail-contact">
+  <div class="mail-contact">{{fromPreview(from_address, from_name)}}</div>
+  <small class="mail-preview">
+    <span class="mail-subject">{{subjectPreview(subject)}}</span>
+    <span class="mail-snippet">{{snippet}}</span>
+  </small>
+</td>
+<td class="tm_table-mail-date">
+  {{#if hasAttachment(emails)}}
+  <svg class="icon mail-attachment">
+    <use xlink:href="/images/symbols.svg#attachment"></use>
+  </svg>
+  {{/if}}
+  {{#if emails_count > 1}}
+  <span class="mail-count">{{emails_count}}</span>
+  <small class="mail-date">{{datePreview(date)}}</small>
+  {{else}}
+  <small class="mail-date {{#if hasAttachment(emails)}}single-email-date-preview{{/if}}">{{datePreview(date)}}</small>
+  {{/if}}
+</td>
+<% } else { %>
+<td class="tm_table-mail-userpic">
+  <%=
+    this.insertPartial(
+      "shared/avatar",
+      { "urlSource": "people[0].avatar_url", "width": 40, "height": 40 }
+    )
+  %>
+</td>
+<td class="tm_table-mail-contact">
+  <div class="mail-contact">{{fromPreview(from_address, from_name)}}</div>
+  <small class="mail-preview">
+    <span class="mail-subject">{{subjectPreview(subject)}}</span>
+    <span class="mail-snippet">{{snippet}}</span>
+  </small>
+</td>
+<td class="tm_table-mail-date">
+  {{#if hasAttachment(emails)}}
+  <svg class="icon mail-attachment">
+    <use xlink:href="/images/symbols.svg#attachment"></use>
+  </svg>
+  {{/if}}
+  {{#if emails_count > 1}}
+  <span class="mail-count">{{emails_count}}</span>
+  <small class="mail-date">{{datePreview(date)}}</small>
+  {{else}}
+  <small class="mail-date {{#if hasAttachment(emails)}}single-email-date-preview{{/if}}">{{datePreview(date)}}</small>
+  {{/if}}
+</td>
+<% } %>

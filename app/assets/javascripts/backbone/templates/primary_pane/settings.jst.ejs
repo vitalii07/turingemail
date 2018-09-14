@@ -1,0 +1,72 @@
+<div class="create_rule_view" style="display:none"></div>
+
+<div class="tm_content-box">
+  <ul class="tm_content-tabs">
+    <li class="active"><a data-toggle="tab" href="#tab-1">General</a></li>
+    <li><a data-toggle="tab" href="#tab-2">Profile</a></li>
+    <li><a data-toggle="tab" href="#tab-3">Desktop</a></li>
+  </ul>
+
+  <div id="tab-1" class="tm_content-tab-pane active">
+    <div class="tm_settings-switch">
+      <svg class="icon"><use xlink:href="/images/symbols.svg#settings-shortcuts"></use></svg>
+      <strong>Keyboard Shortcuts</strong>
+      <input type="checkbox" data-on-label="On" data-off-label="Off" class="keyboard-shortcuts-switch" <%= userConfiguration.keyboard_shortcuts_enabled ? "checked" : "" %>>
+    </div>
+    <div class="tm_settings-switch">
+      <svg class="icon"><use xlink:href="/images/symbols.svg#settings-display"></use></svg>
+      <strong>Preview Panel</strong>
+      <select class="tm_select tm_input-rounded fggray split-pane-select">
+        <option value="horizontal" <% if (userConfiguration.split_pane_mode == "horizontal") { %>selected<% } %>>Horizontal</option>
+        <option value="vertical" <% if (userConfiguration.split_pane_mode == "vertical") { %>selected<% } %>>Vertical</option>
+        <option value="off" <% if (userConfiguration.split_pane_mode == "off") { %>selected<% } %>>None</option>
+      </select>
+    </div>
+    <div class="tm_settings-switch">
+      <svg class="icon"><use xlink:href="/images/symbols.svg#settings-tabs"></use></svg>
+      <strong>Inbox Tabs</strong>
+      <input type="checkbox" data-on-label="On" data-off-label="Off" class="inbox-tabs-switch" <%= userConfiguration.inbox_tabs_enabled ? "checked" : "" %>>
+    </div>
+    <div class="tm_settings-switch">
+      <svg class="icon"><use xlink:href="/images/symbols.svg#settings-developer"></use></svg>
+      <strong>Contact Sidebar</strong>
+      <input type="checkbox" data-on-label="On" data-off-label="Off" class="context-sidebar-switch" <%= userConfiguration.context_sidebar_enabled ? "checked" : "" %>>
+    </div>
+  </div>
+
+  <div id="tab-2" class="tm_content-tab-pane">
+    <div class="tm_settings-profile">
+      <div class="tm_userpic">
+        <% if(profilePicture) { %>
+          <img src="<%= profilePicture %>">
+        <% } else { %>
+          <svg><use xlink:href="/images/symbols.svg#profile"></use></svg>
+        <% } %>
+<!--         <div class="tm_settings-upload-photo">
+          <div class="tm_settings-upload-photo-label">
+            <svg class="icon"><use xlink:href="/images/symbols.svg#plus"></use></svg>
+            <div>Upload Photo</div>
+          </div>
+        </div> -->
+      </div>
+      <div class="tm_settings-profile-edit">
+        <input type="text" class="tm_input tm_settings-username" placeholder="your name" value="<%= name %>">
+        <!--
+        <input type="text" class="tm_input" placeholder="something" value="behance.net/alexisroizen">
+        <input type="text" class="tm_input" placeholder="company">
+        <input type="text" class="tm_input" placeholder="location">
+        -->
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-3" class="tm_content-tab-pane">
+    <div class="tm_box-heading">
+      <svg class="icon"><use xlink:href="/images/symbols.svg#section-rules"></use></svg>
+      <div class="expander">
+        <h2>Desktop application</h2>
+        <p>Click <a href="https://s3-us-west-1.amazonaws.com/turing-downloads/Turing+Email.dmg">here</a> to download the Turing Desktop application for Max OS X.</p>
+      </div>
+    </div>
+  </div>
+</div>

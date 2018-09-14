@@ -1,0 +1,115 @@
+<div class="tm_page-header">
+  <!-- TODO: implement back-end for associating sent emails with email templates.
+  <div>
+    <span class="tm_toolbar-label tm_toolbar-small">Tracking</span>
+    <div class="dropdown">
+      <button class="tm_button tm_button-caret" data-toggle="dropdown">Always</button>
+      <ul class="dropdown-menu pull-right" role="menu">
+        <li role="presentation"><a role="menuitem" tabindex="-1">Always</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1">Email Templates</a></li>
+      </ul>
+    </div>
+  </div>
+  -->
+</div>
+<div class="tm_tracker-chart email-tracker-chart"></div>
+
+<div class="tm_toolbar">
+  <div>
+    <div class="tm_search-field tm_tracker-search">
+      <input type="search" class="tm_input tm_search-filter-keyword" placeholder="Filter by subject, recipient, etc" value="{{filterKeyword}}">
+      <div class="tm_search-field-buttons">
+        <button class="tm_search-filter-reset">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#reset"></use></svg>
+        </button>
+        <button class="tm_search-filter-submit">
+          <svg class="icon"><use xlink:href="/images/symbols.svg#search"></use></svg>
+        </button>
+      </div>
+    </div>
+
+    <!--TODO: figure out useful options for this.
+    <div class="dropdown">
+      <button class="tm_button tm_button-caret" data-toggle="dropdown">All Messages</button>
+      <ul class="dropdown-menu pull-right" role="menu">
+        <li role="presentation"><a role="menuitem" tabindex="-1">All Messages</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1">Any Messages</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1">Some Messages</a></li>
+      </ul>
+    </div>-->
+  </div>
+
+  <div class="expander"></div>
+
+  <div>
+    <span class="tm_toolbar-label tm_toolbar-small">Sort by</span>
+    <div class="dropdown">
+      <button class="tm_button tm_button-caret" data-toggle="dropdown">{{sortFields[sortField]}}</button>
+      <ul class="dropdown-menu pull-right" role="menu">
+        {{#sortFields:value}}
+        <li role="presentation"><a role="menuitem" tabindex="-1" data-sort-by="{{value}}">{{this}}</a></li>
+        {{/sortFields}}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<table class="tm_tracker-table">
+  <thead>
+  <tr>
+    <th>Date</th>
+    <th>Subject</th>
+    <th>Opens</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  {{#emailTrackers}}
+  <tr>
+    <td>
+      <span class="tm_tracker-date">{{formatDate(email_date)}}</span>
+      <span class="tm_tracker-time">{{formatTime(email_date)}}</span>
+    </td>
+    <td>
+      <span class="tm_tracker-subject">{{email_subject}}</span>
+    </td>
+    <td>
+      {{#if getViewCountOfRecipients(email_tracker_recipients) > 0}}
+        {{#email_tracker_recipients}}
+          {{#if email_tracker_views.length > 0}}
+          <dl class="tm_tracker-open">
+            <dt>{{email_address}}</dt>
+            <dd>
+              <table>
+                <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>IP Address</th>
+                  <th>User Agent</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#email_tracker_views}}
+                <tr>
+                  <td>
+                    <span class="tm_tracker-date">{{formatDate(created_at)}}</span>
+                    <span class="tm_tracker-time">{{formatTime(created_at)}}</span>
+                  </td>
+                  <td>{{ip_address}}</td>
+                  <td>{{user_agent}}</td>
+                </tr>
+                {{/email_tracker_views}}
+                </tbody>
+              </table>
+            </dd>
+          </dl>
+          {{/if}}
+        {{/email_tracker_recipients}}
+      {{else}}
+      <span class="tm_tracker-notopen">Email was not open yet</span>
+      {{/if}}
+    </td>
+  </tr>
+  {{/emailTrackers}}
+  </tbody>
+</table>
